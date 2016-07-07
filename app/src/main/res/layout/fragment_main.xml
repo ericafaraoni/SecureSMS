@@ -8,5 +8,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ciao" />
+        android:text="Esempio di Relative Layout"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="Invia SMS"
+        android:layout_above="@+id/receiveButton"
+        android:layout_alignLeft="@+id/receiveButton"
+        android:layout_alignStart="@+id/receiveButton" />
+
+    <Button
+        android:id="@+id/receiveButton"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="Ricevi SMS"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="49dp" />
+
 </RelativeLayout>

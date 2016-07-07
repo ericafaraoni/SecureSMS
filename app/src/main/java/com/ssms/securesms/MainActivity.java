@@ -1,5 +1,6 @@
 package com.ssms.securesms;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.view.View.OnClickListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +24,16 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.container, new MainFragment()).commit();
 
         }
+
+        Button sendSMS = (Button) findViewById(R.id.sendButton);
+        Button receiveSMS = (Button) findViewById(R.id.receiveButton);
+        sendSMS.setOnClickListener(this);
+        receiveSMS.setOnClickListener(this);
     }
 
+    /*
+         Creazione fragment
+    */
     public static class MainFragment extends Fragment {
 
         public MainFragment() {
@@ -36,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+         Creazione menu
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -54,5 +68,27 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /*
+         Gestione button
+    */
+    @Override
+    public void onClick(View arg0) {
+
+        Intent i = new Intent(this, PinActivity.class);
+
+        switch(arg0.getId())
+        {
+            case R.id.sendButton:
+                i.putExtra("action","SEND");
+                break;
+
+            case R.id.receiveButton:
+                i.putExtra("action","RECEIVE");
+                break;
+        }
+
+        startActivity(i);
     }
 }
