@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">SecureSMS</string>
+
+    <string name="title_activity_pin">Insert pin</string>
+    <string name="activity_pin_textview_text">Insert a 4 digit pin</string>
+    <string name="key_board_1">1</string>
+    <string name="key_board_2">2</string>
+    <string name="key_board_3">3</string>
+    <string name="key_board_4">4</string>
+    <string name="key_board_5">5</string>
+    <string name="key_board_6">6</string>
+    <string name="key_board_7">7</string>
+    <string name="key_board_8">8</string>
+    <string name="key_board_9">9</string>
+    <string name="key_board_0">0</string>
+    <string name="key_board_cancel">C</string>
+    <string name="ok">OK</string>
+    <string name="title_activity_telephone_number">TelephoneNumberActivity</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

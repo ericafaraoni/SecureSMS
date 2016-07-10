@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null)
@@ -32,19 +33,25 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     /*
-         Creazione fragment
+         Gestione button
     */
-    public static class MainFragment extends Fragment {
+    @Override
+    public void onClick(View arg0) {
 
-        public MainFragment() {
+        Intent i = new Intent(this, PinActivity.class);
+
+        switch(arg0.getId())
+        {
+            case R.id.sendButton:
+                i.putExtra("action","SEND");
+                break;
+
+            case R.id.receiveButton:
+                i.putExtra("action","RECEIVE");
+                break;
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
+        startActivity(i);
     }
 
     /*
@@ -71,24 +78,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     /*
-         Gestione button
+         Creazione fragment
     */
-    @Override
-    public void onClick(View arg0) {
+    public static class MainFragment extends Fragment {
 
-        Intent i = new Intent(this, PinActivity.class);
-
-        switch(arg0.getId())
-        {
-            case R.id.sendButton:
-                i.putExtra("action","SEND");
-                break;
-
-            case R.id.receiveButton:
-                i.putExtra("action","RECEIVE");
-                break;
+        public MainFragment() {
         }
 
-        startActivity(i);
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            return rootView;
+        }
     }
+
 }
