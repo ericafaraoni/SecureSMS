@@ -31,7 +31,12 @@
         <activity
             android:name=".TelephoneNumberActivity"
             android:label="@string/title_activity_telephone_number"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SendTextActivity"
+            android:label="@string/title_activity_send_text"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ReceiveTextActivity"></activity>
     </application>
 
 </manifest>

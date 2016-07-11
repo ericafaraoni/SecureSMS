@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SecureSMS</string>
 
+    //Pin Activity
     <string name="title_activity_pin">Insert pin</string>
     <string name="activity_pin_textview_text">Insert a 4 digit pin</string>
     <string name="key_board_1">1</string>
@@ -17,5 +18,18 @@
     <string name="ok">OK</string>
     <string name="title_activity_telephone_number">TelephoneNumberActivity</string>
     <string name="action_settings">Settings</string>
+
+    //Telephone Number Activity
+    <string name="textViewTelActivity"></string>
+    <string name="title_activity_send_text">SendTextActivity</string>
+
+    //Send Text Activity
+    <string name="send_text_activity_textview_attendi">Attendi il messaggio e poi premi il tasto OK per inviare il testo del messaggio</string>
+    <string name="scrivi_msg">Inserisci qui il messaggio da inviare</string>
+    <string name="send_sms">Invia!</string>
+
+    //Receive Text Activity
+    <string name="receive_activity_textview0">Attendi il messaggio e poi premi OK</string>
+    <string name="back_to_main_activity">Torna al menù principale</string>
 
 </resources>

@@ -34,18 +34,19 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
         // Keyboard buttons
         Button keyboard[] = new Button[12];
-        keyboard[0] = (Button) findViewById(R.id.ButtonKeypad1PinActivity);
-        keyboard[1] = (Button) findViewById(R.id.ButtonKeypad2PinActivity);
-        keyboard[2] = (Button) findViewById(R.id.ButtonKeypad3PinActivity);
-        keyboard[3] = (Button) findViewById(R.id.ButtonKeypad4PinActivity);
-        keyboard[4] = (Button) findViewById(R.id.ButtonKeypad5PinActivity);
-        keyboard[5] = (Button) findViewById(R.id.ButtonKeypad6PinActivity);
-        keyboard[6] = (Button) findViewById(R.id.ButtonKeypad7PinActivity);
-        keyboard[7] = (Button) findViewById(R.id.ButtonKeypad8PinActivity);
-        keyboard[8] = (Button) findViewById(R.id.ButtonKeypad9PinActivity);
-        keyboard[9] = (Button) findViewById(R.id.ButtonKeypadBackPinActivity);
-        keyboard[10] = (Button) findViewById(R.id.ButtonKeypad0PinActivity);
-        keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkPinActivity);
+        keyboard[0] = (Button) findViewById(R.id.ButtonKeypad1Activity);
+        keyboard[1] = (Button) findViewById(R.id.ButtonKeypad2Activity);
+        keyboard[2] = (Button) findViewById(R.id.ButtonKeypad3Activity);
+        keyboard[3] = (Button) findViewById(R.id.ButtonKeypad4Activity);
+        keyboard[4] = (Button) findViewById(R.id.ButtonKeypad5Activity);
+        keyboard[5] = (Button) findViewById(R.id.ButtonKeypad6Activity);
+        keyboard[6] = (Button) findViewById(R.id.ButtonKeypad7Activity);
+        keyboard[7] = (Button) findViewById(R.id.ButtonKeypad8Activity);
+        keyboard[8] = (Button) findViewById(R.id.ButtonKeypad9Activity);
+        keyboard[9] = (Button) findViewById(R.id.ButtonKeypadBackActivity);
+        keyboard[10] = (Button) findViewById(R.id.ButtonKeypad0Activity);
+        keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkActivity);
+
         // set keyboard buttons listener
         for(int i=0; i<keyboard.length; i++)
             keyboard[i].setOnClickListener(this);
@@ -58,17 +59,17 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View arg0)
     {
         Intent nextActivityIntent = new Intent(this, TelephoneNumberActivity.class);
-        TextView pinTextView = (TextView) findViewById(R.id.textViewPinActivity);
+        TextView pinTextView = (TextView) findViewById(R.id.textViewActivity);
         String pinText = pinTextView.getText().toString();
 
         switch(arg0.getId())
         {
-            case R.id.ButtonKeypadBackPinActivity:
+            case R.id.ButtonKeypadBackActivity:
                 if(pinText.length() > 0)
                     pinText = pinText.substring(0, pinText.length() - 1);
                 break;
 
-            case R.id.ButtonKeypadOkPinActivity:
+            case R.id.ButtonKeypadOkActivity:
                 if(pinText.length() != 4)
                 {
                     Toast.makeText(getApplicationContext(), "Il PIN deve essere di 4 cifre", Toast.LENGTH_LONG).show();
