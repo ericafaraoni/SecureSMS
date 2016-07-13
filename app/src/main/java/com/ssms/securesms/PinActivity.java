@@ -13,8 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PinActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class PinActivity extends AppCompatActivity{
+    
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
     private String action = "";
 
     @Override
@@ -48,15 +49,15 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkActivity);
 
         // set keyboard buttons listener
-        for(int i=0; i<keyboard.length; i++)
-            keyboard[i].setOnClickListener(this);
+       // for(int i=0; i<keyboard.length; i++)
+            //keyboard[i].setOnClickListener(this);
     }
 
     /*
          Gestione button
     */
-    @Override
-    public void onClick(View arg0)
+
+    public void buttonAction(View arg0)
     {
         Intent nextActivityIntent = new Intent(this, TelephoneNumberActivity.class);
         TextView pinTextView = (TextView) findViewById(R.id.textViewActivity);
