@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity {
+
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +30,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         Button sendSMS = (Button) findViewById(R.id.sendButton);
         Button receiveSMS = (Button) findViewById(R.id.receiveButton);
-        sendSMS.setOnClickListener(this);
-        receiveSMS.setOnClickListener(this);
+        //sendSMS.setOnClickListener(btnClick);
+        //receiveSMS.setOnClickListener(btnClick);
     }
 
     /*
          Gestione button
     */
-    @Override
-    public void onClick(View arg0) {
+    public void buttonAction(View arg0) {
 
         Intent i = new Intent(this, PinActivity.class);
 
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
 
         startActivity(i);
+
     }
+
 
     /*
          Creazione menu
