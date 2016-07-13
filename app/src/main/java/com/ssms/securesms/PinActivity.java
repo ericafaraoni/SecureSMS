@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PinActivity extends AppCompatActivity{
-    
+
     public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
     private String action = "";
 
