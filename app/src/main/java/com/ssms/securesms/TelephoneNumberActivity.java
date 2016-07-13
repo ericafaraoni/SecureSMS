@@ -30,9 +30,10 @@ import java.util.Scanner;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class TelephoneNumberActivity extends AppCompatActivity implements View.OnClickListener {
+public class TelephoneNumberActivity extends AppCompatActivity {
 
     private String action, nonceA, nonceB, myPhone;
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,9 +70,6 @@ public class TelephoneNumberActivity extends AppCompatActivity implements View.O
         keyboard[10] = (Button) findViewById(R.id.ButtonKeypad0Activity);
         keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkActivity);
 
-        // set keyboard buttons listener
-        for(int i=0; i<keyboard.length; i++)
-            keyboard[i].setOnClickListener(this);
     }
 
     private void sendMsg0(String destPhone) throws Exception
@@ -181,8 +179,7 @@ public class TelephoneNumberActivity extends AppCompatActivity implements View.O
     /*
          Gestione button
     */
-    @Override
-    public void onClick(View arg0)
+    public void buttonAction(View arg0)
     {
         TextView telTextView = (TextView) findViewById(R.id.textViewActivity);
         String telText = telTextView.getText().toString();

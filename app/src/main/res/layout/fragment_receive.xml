@@ -43,7 +43,8 @@
         android:layout_alignBottom="@+id/okButtonMsg1ReceiveTextActivity"
         android:layout_alignLeft="@+id/okButtonMsg1ReceiveTextActivity"
         android:text="@string/ok"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:onClick="buttonAction"/>
 
     <Button
         android:id="@+id/endButtonReceiveTextActivity"
@@ -53,7 +54,8 @@
         android:layout_alignBottom="@+id/okButtonMsg1ReceiveTextActivity"
         android:layout_alignLeft="@+id/okButtonMsg1ReceiveTextActivity"
         android:text="@string/back_to_main_activity"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:onClick="buttonAction"/>
 
 
 

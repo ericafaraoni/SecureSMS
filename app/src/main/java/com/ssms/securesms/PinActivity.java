@@ -48,9 +48,6 @@ public class PinActivity extends AppCompatActivity{
         keyboard[10] = (Button) findViewById(R.id.ButtonKeypad0Activity);
         keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkActivity);
 
-        // set keyboard buttons listener
-       // for(int i=0; i<keyboard.length; i++)
-            //keyboard[i].setOnClickListener(this);
     }
 
     /*

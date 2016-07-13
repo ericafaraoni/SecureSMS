@@ -20,8 +20,9 @@ import java.io.File;
 
 import javax.crypto.SecretKey;
 
-public class ReceiveTextActivity extends AppCompatActivity implements View.OnClickListener {
+public class ReceiveTextActivity extends AppCompatActivity {
 
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
     private String nonceB, destPhone;
     private SecretKey sharedKey;
     private SymmetricCipher sc;
@@ -43,8 +44,7 @@ public class ReceiveTextActivity extends AppCompatActivity implements View.OnCli
         buttons[0] = (Button) findViewById(R.id.okButtonMsg1ReceiveTextActivity);
         buttons[1] = (Button) findViewById(R.id.okButtonMsg2ReceiveTextActivity);
         buttons[2] = (Button) findViewById(R.id.endButtonReceiveTextActivity);
-        for(int i=0; i<buttons.length; i++)
-            buttons[i].setOnClickListener(this);
+
         // recover my nonce, destPhone and myPhone
         Intent intent = getIntent();
         nonceB = intent.getStringExtra("nonceB");
@@ -105,7 +105,7 @@ public class ReceiveTextActivity extends AppCompatActivity implements View.OnCli
     /*
         Gestione button
     */
-    public void onClick(View arg0)
+    public void buttonAction(View arg0)
     {
         TextView txtView = (TextView) findViewById(R.id.textViewReceiveTextActivity);
         Intent nextActivityIntent = null;
