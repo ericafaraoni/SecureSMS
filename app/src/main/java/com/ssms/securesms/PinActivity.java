@@ -139,7 +139,7 @@ public class PinActivity extends AppCompatActivity{
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_insert_number, container,
+            View rootView = inflater.inflate(R.layout.fragment_pin, container,
                     false);
             return rootView;
         }
