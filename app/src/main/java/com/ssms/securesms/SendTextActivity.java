@@ -28,8 +28,9 @@ import java.util.ArrayList;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class SendTextActivity extends AppCompatActivity implements View.OnClickListener {
+public class SendTextActivity extends AppCompatActivity {
 
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
     private String nonceA, destPhone;
     private SecretKey sharedKey;
     private SymmetricCipher sc;
@@ -48,8 +49,7 @@ public class SendTextActivity extends AppCompatActivity implements View.OnClickL
         Button[] buttons = new Button[2];
         buttons[0] = (Button) findViewById(R.id.okButtonSendTextActivity);
         buttons[1] = (Button) findViewById(R.id.inviaButtonSendTextActivity);
-        for(int i=0; i<buttons.length; i++)
-            buttons[i].setOnClickListener(this);
+
         // recover my nonce
         Intent intent = getIntent();
         nonceA = intent.getStringExtra("nonceA");
@@ -129,8 +129,8 @@ public class SendTextActivity extends AppCompatActivity implements View.OnClickL
     /*
         Gestione button
     */
-    @Override
-    public void onClick(View arg0)
+
+    public void buttonAction(View arg0)
     {
         TextView txtView = (TextView) findViewById(R.id.textViewSendTextActivity);
         EditText edit = (EditText) findViewById(R.id.editTextSendTextActivity);
