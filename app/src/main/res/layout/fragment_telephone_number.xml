@@ -13,7 +13,7 @@
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/activity_pin_textview_text" />
+        android:text="@string/textViewTelActivity" />
 
     <TextView
         android:id="@+id/textViewActivity"
@@ -28,141 +28,142 @@
     <Button android:id="@+id/ButtonKeypad1Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignLeft="@+id/textViewActivity"
-        android:layout_below="@+id/textViewActivity"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="51dp"
         android:text="@string/key_board_1"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_below="@+id/textViewActivity"
+        android:layout_alignLeft="@+id/textViewActivity"
+        android:layout_alignStart="@+id/textViewActivity" />
 
     <Button	android:id="@+id/ButtonKeypad2Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad1Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad1Activity"
-        android:layout_centerHorizontal="true"
         android:text="@string/key_board_2"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_alignTop="@+id/ButtonKeypad1Activity"
+        android:layout_centerHorizontal="true" />
 
     <Button	android:id="@+id/ButtonKeypad3Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad2Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad2Activity"
-        android:layout_alignRight="@+id/textViewActivity"
         android:text="@string/key_board_3"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_alignTop="@+id/ButtonKeypad2Activity"
+        android:layout_alignRight="@+id/textViewActivity"
+        android:layout_alignEnd="@+id/textViewActivity" />
 
     <Button
         android:id="@+id/ButtonKeypad4Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignLeft="@+id/ButtonKeypad1Activity"
-        android:layout_centerVertical="true"
         android:text="@string/key_board_4"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_below="@+id/ButtonKeypad1Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad1Activity"
+        android:layout_alignStart="@+id/ButtonKeypad1Activity" />
 
     <Button
         android:id="@+id/ButtonKeypad5Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad4Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad4Activity"
-        android:layout_alignLeft="@+id/ButtonKeypad2Activity"
         android:text="@string/key_board_5"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_alignTop="@+id/ButtonKeypad4Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad2Activity"
+        android:layout_alignStart="@+id/ButtonKeypad2Activity" />
 
     <Button
         android:id="@+id/ButtonKeypad6Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad5Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad5Activity"
-        android:layout_alignLeft="@+id/ButtonKeypad3Activity"
         android:text="@string/key_board_6"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_alignTop="@+id/ButtonKeypad5Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad3Activity"
+        android:layout_alignStart="@+id/ButtonKeypad3Activity" />
 
     <Button
         android:id="@+id/ButtonKeypad7Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignLeft="@+id/ButtonKeypad4Activity"
-        android:layout_below="@+id/ButtonKeypad4Activity"
-        android:layout_marginTop="21dp"
         android:text="@string/key_board_7"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_below="@+id/ButtonKeypad4Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad4Activity"
+        android:layout_alignStart="@+id/ButtonKeypad4Activity" />
 
     <Button
         android:id="@+id/ButtonKeypad8Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad7Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad7Activity"
-        android:layout_alignLeft="@+id/ButtonKeypad5Activity"
         android:text="@string/key_board_8"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_above="@+id/ButtonKeypadBackActivity"
+        android:layout_alignLeft="@+id/ButtonKeypad5Activity"
+        android:layout_alignStart="@+id/ButtonKeypad5Activity" />
 
     <Button
         android:id="@+id/ButtonKeypad9Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad8Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad8Activity"
-        android:layout_alignLeft="@+id/ButtonKeypad6Activity"
         android:text="@string/key_board_9"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_below="@+id/ButtonKeypad6Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad6Activity"
+        android:layout_alignStart="@+id/ButtonKeypad6Activity" />
 
     <Button
         android:id="@+id/ButtonKeypadBackActivity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignLeft="@+id/ButtonKeypad7Activity"
-        android:layout_below="@+id/ButtonKeypad7Activity"
-        android:layout_marginTop="16dp"
         android:text="@string/key_board_cancel"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_below="@+id/ButtonKeypad7Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad7Activity"
+        android:layout_alignStart="@+id/ButtonKeypad7Activity" />
 
     <Button
         android:id="@+id/ButtonKeypad0Activity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypadBackActivity"
-        android:layout_alignBottom="@+id/ButtonKeypadBackActivity"
-        android:layout_alignLeft="@+id/ButtonKeypad8Activity"
         android:text="@string/key_board_0"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_below="@+id/ButtonKeypad8Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad8Activity"
+        android:layout_alignStart="@+id/ButtonKeypad8Activity" />
 
     <Button
         android:id="@+id/ButtonKeypadOkActivity"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_alignBaseline="@+id/ButtonKeypad0Activity"
-        android:layout_alignBottom="@+id/ButtonKeypad0Activity"
-        android:layout_alignLeft="@+id/ButtonKeypad9Activity"
         android:text="@string/ok"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="buttonAction"/>
+        android:onClick="buttonAction"
+        android:layout_alignTop="@+id/ButtonKeypad0Activity"
+        android:layout_alignLeft="@+id/ButtonKeypad9Activity"
+        android:layout_alignStart="@+id/ButtonKeypad9Activity" />
 
 </RelativeLayout>
