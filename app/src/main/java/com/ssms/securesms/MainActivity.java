@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button sendSMS = (Button) findViewById(R.id.sendButton);
         Button receiveSMS = (Button) findViewById(R.id.receiveButton);
-        //sendSMS.setOnClickListener(btnClick);
-        //receiveSMS.setOnClickListener(btnClick);
+
     }
 
     /*
