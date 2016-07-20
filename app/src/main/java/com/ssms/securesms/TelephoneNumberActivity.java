@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,8 +21,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -75,19 +80,39 @@ public class TelephoneNumberActivity extends AppCompatActivity {
     //Send the first message of the session key exchange protocol (if Action=SEND)
     private void sendMsg0(String destPhone) throws Exception
     {
+        Log.d("DEBUG", "sono entrato in sendMsg0");
         AsymmetricCipher ac = new AsymmetricCipher("RSA/ECB/PKCS1Padding");
+        Log.d("DEBUG", "Ho fatto l'AsymmetricCipher");
         KeyStorage myAsymStorage;
         PublicKey bPublicKey;
 
         // retrieve B's public key
         File path = Environment.getExternalStorageDirectory();
+        Log.d("DEBUG", "ho trovato il path della SD card");
+        Log.d("DEBUG","DestPhone is "+ destPhone );
         String keysPath = path.getAbsolutePath() + "/SSMSkeys/";
+        Log.d("DEBUG","keyspath is "+ keysPath );
         myAsymStorage = new KeyStorage(keysPath, "", destPhone + ".key", "");
         bPublicKey = myAsymStorage.loadPublicKey();
+        Log.d("DEBUG","load public key" );
+
         // retrieve my phone number
-        Scanner s = new Scanner(new FileReader(keysPath + "myPhone"));
+
+        try{
+
+        Scanner s = new Scanner(new FileReader(keysPath + "myPhone.txt"));
+        Log.d("DEBUG","scanner done");
         myPhone = s.next();
-        s.close();
+        myPhone = "5554";
+        Log.d("DEBUG","Myphone number is: "+myPhone);
+        s.close();}
+        catch (Exception e)
+        {
+            String error="";
+            error=e.getMessage();
+            Log.d("ERROR",error);
+        }
+
         // prepare SMS text
         String plainText = nonceA + "|" + myPhone;
         // encrypt plaintext
@@ -146,7 +171,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
 
         // prepare SMS text
         // retrieve my phone number
-        Scanner s = new Scanner(new FileReader(keysPath + "myPhone"));
+      Scanner s = new Scanner(new FileReader(keysPath + "myPhone"));
         myPhone = s.next();
         s.close();
         // generate the session key
@@ -203,6 +228,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                 {
                     if(action.equals("SEND"))
                     {
+                        Log.d("DEBUG", "sono entrato in send e devo richiamare sendMsg0");
                         try
                         {
                             sendMsg0(telText);
@@ -211,7 +237,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                         {
                             // if an exception occours during the protocol execution, the app returns on the main activity
                             nextActivityIntent = new Intent(this, MainActivity.class);
-                            Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Si è verificato un errore in Send! "+ myPhone, Toast.LENGTH_LONG).show();
                         }
                         nextActivityIntent = new Intent(this, SendTextActivity.class);
                         nextActivityIntent.putExtra("nonceA", nonceA);
