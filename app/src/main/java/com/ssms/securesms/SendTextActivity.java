@@ -56,6 +56,7 @@ public class SendTextActivity extends AppCompatActivity {
         destPhone = intent.getStringExtra("destPhone");
     }
 
+    //Send the third message of the session key exchange protocol
     private int sendMsg2() throws Exception
     {
         AsymmetricCipher ac = new AsymmetricCipher("RSA/ECB/PKCS1Padding");
@@ -115,7 +116,7 @@ public class SendTextActivity extends AppCompatActivity {
         sc = new SymmetricCipher(sharedKey, "AES/CBC/PKCS5Padding", IV);
 
         // prepare SMS text
-        // prepare text to encrypt
+        // prepare text to encrypt (B's nonce)
         plainText = msgFields[1];
         // encrypt plaintext
         cipherText = sc.encrypt(plainText);
