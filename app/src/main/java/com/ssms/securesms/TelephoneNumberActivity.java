@@ -72,6 +72,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
 
     }
 
+    //Send the first message of the session key exchange protocol (if Action=SEND)
     private void sendMsg0(String destPhone) throws Exception
     {
         AsymmetricCipher ac = new AsymmetricCipher("RSA/ECB/PKCS1Padding");
@@ -97,7 +98,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);
     }
 
-
+    //Send the second message of the session key exchange protocol (if Action=RECEIVE)
     private int sendMsg1(String destPhone) throws Exception
     {
         AsymmetricCipher ac = new AsymmetricCipher("RSA/ECB/PKCS1Padding");
