@@ -1,12 +1,16 @@
 package com.ssms.securesms;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -93,8 +97,10 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         String keysPath = path.getAbsolutePath() + "/SSMSkeys/";
         Log.d("DEBUG","keyspath is "+ keysPath );
         myAsymStorage = new KeyStorage(keysPath, "", destPhone + ".key", "");
+        Log.d("DEBUG"," "+ myAsymStorage);
         bPublicKey = myAsymStorage.loadPublicKey();
         Log.d("DEBUG","load public key" );
+        Log.d("DEBUG"," "+ bPublicKey);
 
         // retrieve my phone number
 
@@ -105,14 +111,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         myPhone = s.next();
         myPhone = "5554";
         Log.d("DEBUG","Myphone number is: "+myPhone);
-        s.close();}
-        catch (Exception e)
-        {
-            String error="";
-            error=e.getMessage();
-            Log.d("ERROR",error);
-        }
-
+        s.close();
         // prepare SMS text
         String plainText = nonceA + "|" + myPhone;
         // encrypt plaintext
@@ -120,7 +119,14 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         // send message
         SmsManager smanager = SmsManager.getDefault();
         ArrayList<String> parts = smanager.divideMessage(cipherText);
-        smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);
+        smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);}
+        catch (Exception e)
+        {
+            String error="";
+            error=e.getMessage();
+            Log.d("ERROR",error);
+        }
+
     }
 
     //Send the second message of the session key exchange protocol (if Action=RECEIVE)
