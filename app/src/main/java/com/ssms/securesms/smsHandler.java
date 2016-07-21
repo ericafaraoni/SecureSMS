@@ -18,7 +18,10 @@ public class smsHandler {
         this.destPhone = destPhone;
     }
 
-    public void smsSend(){
+    public void smsSend(String smsText){
+        SmsManager smanager = SmsManager.getDefault();
+        ArrayList<String> parts = smanager.divideMessage(smsText);
+        smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);
 
 
 
