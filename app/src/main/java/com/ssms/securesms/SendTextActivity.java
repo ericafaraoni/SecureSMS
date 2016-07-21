@@ -63,7 +63,7 @@ public class SendTextActivity extends AppCompatActivity {
         KeyStorage myAsymStorage;
         PrivateKey myKey;
         String cipherText;
-        smsHandler hdl;
+        smsHandler hdl = new smsHandler(this, destPhone);
 
         // retrieve my private key
         File path = Environment.getExternalStorageDirectory();
@@ -72,7 +72,6 @@ public class SendTextActivity extends AppCompatActivity {
         myKey = myAsymStorage.loadPrivateKey();
 
         // retrieve cipherText
-        hdl = new smsHandler(this, destPhone);
         cipherText = hdl.smsReceive();
         if(cipherText.equals("Error1"))
             return -1;

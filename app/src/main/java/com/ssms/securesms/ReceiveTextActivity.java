@@ -72,28 +72,15 @@ public class ReceiveTextActivity extends AppCompatActivity {
     private int receiveMsg2() throws Exception
     {
         String plainText, cipherText;
+        smsHandler hdl = new smsHandler(this, destPhone);
 
-        // retrieve cipher text SMS: it is the last received message from the sender whose phone number is equal to 'destPhone'
-        Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), null, null, null, null);
-        // check if there messages; if no messages are found, it returns -1
-        if(cursor==null || cursor.getCount()==0) {
+        // retrieve cipherText
+        cipherText = hdl.smsReceive();
+        if(cipherText.equals("Error1"))
             return -1;
-        }
-        // scroll all messages and find the last sent by 'destPhone'; if no message from destPhone is sent, it returns -2
-        for(;;)
-        {
-            String tmpSender = cursor.getString(cursor.getColumnIndexOrThrow("address"));
-            if(tmpSender.equals(destPhone))
-            {
-                // message found! it retrieves the cipher text and breaks the loop
-                cipherText = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-                break;
-            }
-            // try the next message; if no more messages are available, it returns -2
-            if(!cursor.moveToNext())
-                return -2;
-        }
-        cursor.close();
+        if(cipherText.equals("Error2"))
+            return -2;
+
         // decrypt
         plainText = sc.decrypt(cipherText);
         // check for nonce equality; if they are different, it returns -3
@@ -161,28 +148,11 @@ public class ReceiveTextActivity extends AppCompatActivity {
             case R.id.okButtonMsg2ReceiveTextActivity:
                 // Once the user press on this button, we have only to read the last message received, decrypt and show it
                 String cipherText, plainText;
-
-                // retrieve cipher text SMS: it is the last received message from the sender whose phone number is equal to 'destPhone'
-                Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), null, null, null, null);
-                // check if there messages; if no messages are found, it returns
-                if(cursor==null || cursor.getCount()==0) {
+                smsHandler hdl = new smsHandler(this, destPhone);
+                // retrieve cipherText
+                cipherText = hdl.smsReceive();
+                if(cipherText.equals("Error1") || cipherText.equals("Error2"))
                     return;
-                }
-                // scroll all messages and find the last sent by 'destPhone'; if no message from destPhone is sent, it returns -2
-                for(;;)
-                {
-                    String tmpSender = cursor.getString(cursor.getColumnIndexOrThrow("address"));
-                    if(tmpSender.equals(destPhone))
-                    {
-                        // message found! it retrieves the cipher text and breaks the loop
-                        cipherText = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-                        break;
-                    }
-                    // try the next message; if no more messages are available, it returns -2
-                    if(!cursor.moveToNext())
-                        return;
-                }
-                cursor.close();
 
                 // decrypt the ciphertext
                 try
