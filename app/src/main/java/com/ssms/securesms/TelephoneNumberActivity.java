@@ -75,6 +75,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         AsymmetricCipher ac = new AsymmetricCipher("RSA/ECB/PKCS1Padding");
         KeyStorage myAsymStorage;
         PublicKey bPublicKey;
+        smsHandler hdl;
 
         // retrieve B's public key
         File path = Environment.getExternalStorageDirectory();
@@ -98,7 +99,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         String cipherText = ac.encrypt(plainText, bPublicKey);
 
         // send message
-        smsHandler hdl = new smsHandler(this,destPhone);
+        hdl = new smsHandler(this,destPhone);
         hdl.smsSend(cipherText);
 
     }
@@ -111,6 +112,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         PrivateKey myKey;
         PublicKey aPublicKey;
         String cipherText;
+        smsHandler hdl;
 
         // retrieve A's public key
         File path = Environment.getExternalStorageDirectory();
@@ -120,28 +122,14 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         // retrieve my private key
         myKey = myAsymStorage.loadPrivateKey();
 
-        // retrieve cipher text SMS: it is the last received message from the sender whose phone number is equal to 'destPhone'
-        Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), null, null, null, null);
-
-        // check if there messages; if no messages are found, it returns -1
-        if(cursor==null || cursor.getCount()==0) {
+        // retrieve cipherText
+        hdl = new smsHandler(this, destPhone);
+        cipherText = hdl.smsReceive();
+        if(cipherText.equals("Error1"))
             return -1;
-        }
-        // scroll all messages and find the last sent by 'destPhone'; if no message from destPhone is sent, it returns -2
-        for(;;)
-        {
-            String tmpSender = cursor.getString(cursor.getColumnIndexOrThrow("address"));
-            if(tmpSender.equals(destPhone))
-            {
-                // message found! it retrieves the cipher text and breaks the loop
-                cipherText = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-                break;
-            }
-            // try the next message; if no more messages are available, it returns -2
-            if(!cursor.moveToNext())
-                return -2;
-        }
-        cursor.close();
+        if(cipherText.equals("Error2"))
+            return -2;
+
         // decrypt first and split the message; msgFields[0] contains A's nonce, msgFields[1] contains A's phone number
         String plainText = ac.decrypt(cipherText, myKey);
         String[] msgFields = plainText.split("[\\x7C]"); // 'x7C' ASCII code for vertical bar '|'
@@ -177,7 +165,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         cipherText = ac.encrypt(plainText, aPublicKey);
 
         // send message
-        smsHandler hdl = new smsHandler(this,destPhone);
+        hdl = new smsHandler(this,destPhone);
         hdl.smsSend(cipherText);
         return 0;
     }
