@@ -179,8 +179,8 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         cipherText = ac.encrypt(plainText, aPublicKey);
 
         // send message
-        smsHandler hdl = new smsHandler(cipherText,destPhone);
-        hdl.smsSend();
+        smsHandler hdl = new smsHandler(this,destPhone);
+        hdl.smsSend(cipherText);
         return 0;
     }
 
