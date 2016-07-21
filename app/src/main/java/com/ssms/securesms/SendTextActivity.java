@@ -71,6 +71,7 @@ public class SendTextActivity extends AppCompatActivity {
         myAsymStorage = new KeyStorage("", keysPath, "", "private.key");
         myKey = myAsymStorage.loadPrivateKey();
 
+        // retrieve cipherText
         hdl = new smsHandler(this, destPhone);
         cipherText = hdl.smsReceive();
         if(cipherText.equals("Error1"))
@@ -98,6 +99,7 @@ public class SendTextActivity extends AppCompatActivity {
         for(int i=0; i<bytes.length; i++)
             bytes[i] = Byte.parseByte(bytesString[i]);
         sharedKey = new SecretKeySpec(bytes, "AES");
+
         // generate the symmetric cipher
         sc = new SymmetricCipher(sharedKey, "AES/CBC/PKCS5Padding", IV);
 
@@ -107,9 +109,8 @@ public class SendTextActivity extends AppCompatActivity {
         // encrypt plaintext
         cipherText = sc.encrypt(plainText);
         // send message
-        SmsManager smanager = SmsManager.getDefault();
-        ArrayList<String> parts = smanager.divideMessage(cipherText);
-        smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);
+        hdl.smsSend(cipherText);
+
         return 0;
     }
 
