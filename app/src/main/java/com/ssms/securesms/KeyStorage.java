@@ -1,10 +1,13 @@
 package com.ssms.securesms;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.KeyFactory;
 import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -74,19 +77,26 @@ public class KeyStorage {
 
         try
         {
+            Log.d("DEBUG","public keypath: " +publicKeyPath + publicKeyFilename );
+
             // Read Public Key.
             File filePublicKey = new File(publicKeyPath + publicKeyFilename);
             FileInputStream fis = new FileInputStream(publicKeyPath + publicKeyFilename);
-            byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
-            fis.read(encodedPublicKey);
+            byte[] PublicKey = new byte[(int) filePublicKey.length()];
+            fis.read(PublicKey);
             fis.close();
 
-            // Reconstruct
+            //Reconstruct
+            X509EncodedKeySpec encodedPublicKey = new X509EncodedKeySpec(PublicKey);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedPublicKey);
-            publicKeyR = keyFactory.generatePublic(publicKeySpec);
+            publicKeyR = keyFactory.generatePublic(encodedPublicKey);
+
         }
-        catch(Exception e) {}
+        catch(Exception e) {
+            String error="";
+            error=e.getMessage();
+            Log.d("ERROR",error);
+        }
 
         return publicKeyR;
     }
