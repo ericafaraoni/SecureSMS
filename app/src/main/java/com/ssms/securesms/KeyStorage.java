@@ -57,13 +57,13 @@ public class KeyStorage {
             // Read Private Key.
             File filePrivateKey = new File(privateKeyPath + privateKeyFilename);
             FileInputStream fis = new FileInputStream(privateKeyPath + privateKeyFilename);
-            byte[] encodedPrivateKey = new byte[(int) filePrivateKey.length()];
-            fis.read(encodedPrivateKey);
+            byte[] PrivateKey = new byte[(int) filePrivateKey.length()];
+            fis.read(PrivateKey);
             fis.close();
 
             // Reconstruct
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(encodedPrivateKey);
+            PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(PrivateKey);
             privateKeyR = keyFactory.generatePrivate(privateKeySpec);
         }
         catch(Exception e) {}

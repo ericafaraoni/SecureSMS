@@ -24,19 +24,24 @@ public class MainActivity extends AppCompatActivity {
 
         // Permission requested at run time necessary from Android 4. bla bla
         final int REQUEST_EXTERNAL_STORAGE = 1;
-        String[] PERMISSIONS_STORAGE = {
+        String[] PERMISSIONS = {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.RECEIVE_SMS
         };
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int sendPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        int receivePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
 
-        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED) {
+        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED
+                || sendPermission != PackageManager.PERMISSION_GRANTED || receivePermission != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                     this,
-                    PERMISSIONS_STORAGE,
+                    PERMISSIONS,
                     REQUEST_EXTERNAL_STORAGE
             );
         }
