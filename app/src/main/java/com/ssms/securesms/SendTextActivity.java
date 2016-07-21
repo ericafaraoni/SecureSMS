@@ -63,6 +63,7 @@ public class SendTextActivity extends AppCompatActivity {
         KeyStorage myAsymStorage;
         PrivateKey myKey;
         String cipherText;
+        smsHandler hdl;
 
         // retrieve my private key
         File path = Environment.getExternalStorageDirectory();
@@ -70,27 +71,12 @@ public class SendTextActivity extends AppCompatActivity {
         myAsymStorage = new KeyStorage("", keysPath, "", "private.key");
         myKey = myAsymStorage.loadPrivateKey();
 
-        // retrieve cipher text SMS: it is the last received message from the sender whose phone number is equal to 'destPhone'
-        Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), null, null, null, null);
-        // check if there messages; if no messages are found, it returns -1
-        if(cursor==null || cursor.getCount()==0) {
+        hdl = new smsHandler(this, destPhone);
+        cipherText = hdl.smsReceive();
+        if(cipherText.equals("Error1"))
             return -1;
-        }
-        // scroll all messages and find the last sent by 'destPhone'; if no message from destPhone is sent, it returns -2
-        for(;;)
-        {
-            String tmpSender = cursor.getString(cursor.getColumnIndexOrThrow("address"));
-            if(tmpSender.equals(destPhone))
-            {
-                // message found! it retrieves the cipher text and breaks the loop
-                cipherText = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-                break;
-            }
-            // try the next message; if no more messages are available, it returns -2
-            if(!cursor.moveToNext())
-                return -2;
-        }
-        cursor.close();
+        if(cipherText.equals("Error2"))
+            return -2;
 
         // decrypt first and split the message;
         // msgFields[0] contains my nonce (A's nonce)
