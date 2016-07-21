@@ -99,9 +99,8 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         String cipherText = ac.encrypt(plainText, bPublicKey);
 
         // send message
-        SmsManager smanager = SmsManager.getDefault();
-        ArrayList<String> parts = smanager.divideMessage(cipherText);
-        smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);
+        smsHandler hdl = new smsHandler(this,destPhone);
+        hdl.smsSend(cipherText);
 
     }
 
