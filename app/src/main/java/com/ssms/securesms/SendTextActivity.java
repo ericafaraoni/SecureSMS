@@ -141,7 +141,7 @@ public class SendTextActivity extends AppCompatActivity {
                                 break;
 
                             case -4:
-                                errorString = "Errore sul nonce!";
+                                errorString = " !";
                                 break;
                         }
                         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();
@@ -175,6 +175,7 @@ public class SendTextActivity extends AppCompatActivity {
                     hdl.smsSend(cipherText);
                     Toast.makeText(getApplicationContext(), "Messaggio inviato!", Toast.LENGTH_SHORT).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
+
                 }
                 catch(Exception e)
                 {

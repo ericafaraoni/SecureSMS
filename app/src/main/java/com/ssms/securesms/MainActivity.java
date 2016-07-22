@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,23 +21,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         // Permission requested at run time necessary from Android 4. bla bla
         final int REQUEST_EXTERNAL_STORAGE = 1;
         String[] PERMISSIONS = {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.SEND_SMS,
-                Manifest.permission.RECEIVE_SMS
+                Manifest.permission.READ_SMS,
         };
-        // Check if we have read or write permission
+        // Check if we have read or write permission and to send and receive sms
         int writePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         int sendPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
-        int receivePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
+        int readsmsPermission = ActivityCompat.checkSelfPermission(this,Manifest.permission.READ_SMS);
 
         if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED
-                || sendPermission != PackageManager.PERMISSION_GRANTED || receivePermission != PackageManager.PERMISSION_GRANTED) {
+                || sendPermission != PackageManager.PERMISSION_GRANTED || readsmsPermission != PackageManager.PERMISSION_GRANTED ) {
             // We don't have permission so prompt the user
+
             ActivityCompat.requestPermissions(
                     this,
                     PERMISSIONS,

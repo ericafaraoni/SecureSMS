@@ -1,18 +1,14 @@
 package com.ssms.securesms;
 
-import android.util.Log;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.KeyFactory;
 import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -77,8 +73,6 @@ public class KeyStorage {
 
         try
         {
-            Log.d("DEBUG","public keypath: " +publicKeyPath + publicKeyFilename );
-
             // Read Public Key.
             File filePublicKey = new File(publicKeyPath + publicKeyFilename);
             FileInputStream fis = new FileInputStream(publicKeyPath + publicKeyFilename);
@@ -94,8 +88,6 @@ public class KeyStorage {
         }
         catch(Exception e) {
             String error="";
-            error=e.getMessage();
-            Log.d("ERROR",error);
         }
 
         return publicKeyR;

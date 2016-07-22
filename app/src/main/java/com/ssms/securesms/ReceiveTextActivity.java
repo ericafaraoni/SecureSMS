@@ -1,13 +1,10 @@
 package com.ssms.securesms;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -97,7 +94,6 @@ public class ReceiveTextActivity extends AppCompatActivity {
     {
         TextView txtView = (TextView) findViewById(R.id.textViewReceiveTextActivity);
         Intent nextActivityIntent = null;
-
         switch(arg0.getId())
         {
             // receive the last message of the protocol
@@ -154,7 +150,6 @@ public class ReceiveTextActivity extends AppCompatActivity {
                 cipherText = hdl.smsReceive();
                 if(cipherText.equals("Error1") || cipherText.equals("Error2"))
                     return;
-
                 // decrypt the ciphertext
                 try
                 {
@@ -168,6 +163,7 @@ public class ReceiveTextActivity extends AppCompatActivity {
                     startActivity(nextActivityIntent);
                     return;
                 }
+
 
                 // set the text of the TextView and the visibility of the buttons
                 txtView.setText(plainText);
