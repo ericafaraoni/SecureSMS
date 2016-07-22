@@ -27,16 +27,11 @@
         <activity
             android:name=".TelephoneNumberActivity"
             android:label="@string/title_activity_telephone_number"/>
-
         <activity
             android:name=".SendTextActivity"
-            android:label="@string/title_activity_send_text"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:label="@string/title_activity_send_text" />
         <activity
             android:name=".ReceiveTextActivity"
-            android:label="@string/title_activity_send_text"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:label="@string/title_activity_receive_text" />
     </application>
 </manifest>
