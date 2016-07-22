@@ -1,10 +1,13 @@
 package com.ssms.securesms;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -91,10 +94,6 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         // prepare SMS text
         String plainText = nonceA + "|" + myPhone;
 
-        Log.d("DEBUG","plaintext: "+ plainText);
-        Log.d("DEBUG","Destphone: "+ destPhone);
-        Log.d("DEBUG","myPhone: "+ myPhone);
-
         // encrypt plaintext
         String cipherText = ac.encrypt(plainText, bPublicKey);
 
@@ -125,10 +124,12 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         // retrieve cipherText
         hdl = new smsHandler(this, destPhone);
         cipherText = hdl.smsReceive();
-        if(cipherText.equals("Error1"))
+        if(cipherText.equals("Error1")) {
             return -1;
-        if(cipherText.equals("Error2"))
+        }
+        if(cipherText.equals("Error2")) {
             return -2;
+        }
 
         // decrypt first and split the message; msgFields[0] contains A's nonce, msgFields[1] contains A's phone number
         String plainText = ac.decrypt(cipherText, myKey);
@@ -139,9 +140,10 @@ public class TelephoneNumberActivity extends AppCompatActivity {
 
         // prepare SMS text
         // retrieve my phone number
-        Scanner s = new Scanner(new FileReader(keysPath + "myPhone"));
+        Scanner s = new Scanner(new FileReader(keysPath + "myPhone.txt"));
         myPhone = s.next();
         s.close();
+
         // generate the session key
         KeyGenerator kg = KeyGenerator.getInstance("AES");
         kg.init(128);
@@ -212,8 +214,6 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Log.d("DEBUG", "sono entrato in receive e devo richiamare sendMsg1");
-
                         try
                         {
                             String errorString = "";
@@ -226,7 +226,6 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                                     case -1:
                                         errorString = "Errore! Nessun messaggio presente.";
                                         break;
-
                                     case -2:
                                         errorString = "Errore! Nessun messaggio inviato da " + telText + ".";
                                         break;

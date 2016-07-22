@@ -1,16 +1,10 @@
 package com.ssms.securesms;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +17,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.security.PrivateKey;
-import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -178,9 +171,8 @@ public class SendTextActivity extends AppCompatActivity {
                     String plainText = edit.getText().toString();
                     // encrypt the plain text
                     String cipherText = sc.encrypt(plainText);
-                    SmsManager smanager = SmsManager.getDefault();
-                    ArrayList<String> parts = smanager.divideMessage(cipherText);
-                    smanager.sendMultipartTextMessage(destPhone, null, parts, null, null);
+                    smsHandler hdl = new smsHandler(this,destPhone);
+                    hdl.smsSend(cipherText);
                     Toast.makeText(getApplicationContext(), "Messaggio inviato!", Toast.LENGTH_SHORT).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
                 }

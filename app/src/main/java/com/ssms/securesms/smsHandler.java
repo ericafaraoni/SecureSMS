@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
 import android.telephony.SmsManager;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -45,7 +44,6 @@ public class smsHandler {
             {
                 // message found! it retrieves the cipher text and breaks the loop
                 cipherText = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-                Log.d("DEBUG","Il messagio è "+cipherText);
                 break;
             }
             // try the next message; if no more messages are available, it returns -2
