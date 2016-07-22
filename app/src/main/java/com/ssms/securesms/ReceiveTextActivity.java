@@ -61,7 +61,7 @@ public class ReceiveTextActivity extends AppCompatActivity {
         catch(Exception e)
         {
             // if an exception occours during the protocol execution, the app returns on the main activity
-            Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
             Intent nextActivityIntent = new Intent(this, MainActivity.class);
             startActivity(nextActivityIntent);
         }
@@ -108,15 +108,15 @@ public class ReceiveTextActivity extends AppCompatActivity {
                         switch(tmp)
                         {
                             case -1:
-                                errorString = "Errore! Nessun messaggio presente.";
+                                errorString = "Error! No SMS found.";
                                 break;
 
                             case -2:
-                                errorString = "Errore! Nessun messaggio inviato da " + destPhone + ".";
+                                errorString = "Error! No SMS from " + destPhone + " found.";
                                 break;
 
                             case -3:
-                                errorString = "Errore sul nonce!";
+                                errorString = "Error, nonce is not correct!";
                                 break;
                         }
                         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();
@@ -128,15 +128,15 @@ public class ReceiveTextActivity extends AppCompatActivity {
                 catch(Exception e)
                 {
                     // if an exception occours during the protocol execution, the app returns on the main activity
-                    Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
                     startActivity(nextActivityIntent);
                     return;
                 }
                 // the handshake is done
-                Toast.makeText(getApplicationContext(), "Handshake finito!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Handshake successfully concluded!", Toast.LENGTH_SHORT).show();
                 // set the text of the TextView and the visibility of the buttons
-                txtView.setText("Attendi il messaggio e poi premi OK per leggere il messaggio");
+                txtView.setText("Wait for the message and then click on OK");
                 arg0.setVisibility(View.INVISIBLE);
                 findViewById(R.id.okButtonMsg2ReceiveTextActivity).setVisibility(View.VISIBLE);
                 break;
@@ -157,8 +157,8 @@ public class ReceiveTextActivity extends AppCompatActivity {
                 }
                 catch(Exception e)
                 {
-                    // if an exception occours during the protocol execution, the app returns on the main activity
-                    Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+                    // if an exception occurs during the protocol execution, the app returns on the main activity
+                    Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
                     startActivity(nextActivityIntent);
                     return;
@@ -200,7 +200,7 @@ public class ReceiveTextActivity extends AppCompatActivity {
     }
 
     /*
-         Creazione fragment
+         Fragment Creation
     */
     public static class ReceiveTextFragment extends Fragment {
 

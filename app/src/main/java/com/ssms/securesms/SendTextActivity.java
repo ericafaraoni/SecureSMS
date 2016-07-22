@@ -129,15 +129,15 @@ public class SendTextActivity extends AppCompatActivity {
                         switch(tmp)
                         {
                             case -1:
-                                errorString = "Errore! Nessun messaggio presente.";
+                                errorString = "Error! No SMS found.";
                                 break;
 
                             case -2:
-                                errorString = "Errore! Nessun messaggio inviato da " + destPhone + ".";
+                                errorString = "Error! No SMS from " + destPhone + " found.";
                                 break;
 
                             case -3:
-                                errorString = "Errore sul mittente!";
+                                errorString = "Error on the sender!";
                                 break;
 
                             case -4:
@@ -152,8 +152,8 @@ public class SendTextActivity extends AppCompatActivity {
                 }
                 catch(Exception e)
                 {
-                    // if an exception occours during the protocol execution, the app returns on the main activity
-                    Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+                    // if an exception occurs during the protocol execution, the app returns on the main activity
+                    Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
                     startActivity(nextActivityIntent);
                 }
@@ -161,7 +161,7 @@ public class SendTextActivity extends AppCompatActivity {
                 txtView.setVisibility(View.INVISIBLE);
                 findViewById(R.id.inviaButtonSendTextActivity).setVisibility(View.VISIBLE);
                 edit.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "Handshake finito!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Handshake successfully concluded!", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.inviaButtonSendTextActivity:
@@ -173,14 +173,14 @@ public class SendTextActivity extends AppCompatActivity {
                     String cipherText = sc.encrypt(plainText);
                     smsHandler hdl = new smsHandler(this,destPhone);
                     hdl.smsSend(cipherText);
-                    Toast.makeText(getApplicationContext(), "Messaggio inviato!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "SMS sent!", Toast.LENGTH_SHORT).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
 
                 }
                 catch(Exception e)
                 {
-                    // if an exception occours during the protocol execution, the app returns on the main activity
-                    Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+                    // if an exception occurs during the protocol execution, the app returns on the main activity
+                    Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
                     nextActivityIntent = new Intent(this, MainActivity.class);
                 }
                 startActivity(nextActivityIntent);
@@ -209,7 +209,7 @@ public class SendTextActivity extends AppCompatActivity {
     }
 
     /*
-         Creazione fragment
+         Fragment Creation
     */
     public static class SendTextFragment extends Fragment {
 

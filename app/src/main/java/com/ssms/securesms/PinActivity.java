@@ -70,7 +70,7 @@ public class PinActivity extends AppCompatActivity{
             case R.id.ButtonKeypadOkActivity:
                 if(pinText.length() != 4)
                 {
-                    Toast.makeText(getApplicationContext(), "Il PIN deve essere di 4 cifre", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "PIN must have 4 numbers.", Toast.LENGTH_LONG).show();
                     break;
                 }
                 else
@@ -97,7 +97,7 @@ public class PinActivity extends AppCompatActivity{
                     pinText += b.getText().toString();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Premi OK per continuare", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Click on OK to continue", Toast.LENGTH_LONG).show();
                 break;
 
         }
@@ -126,7 +126,7 @@ public class PinActivity extends AppCompatActivity{
     }
 
     /*
-         Creazione fragment
+         Fragment Creation
     */
     public static class InsertNumberFragment extends Fragment {
 

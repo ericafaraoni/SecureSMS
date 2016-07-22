@@ -1,16 +1,10 @@
 package com.ssms.securesms;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,12 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileReader;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.crypto.KeyGenerator;
@@ -191,7 +183,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
             case R.id.ButtonKeypadOkActivity:
                 if(telText.length() == 0)
                 {
-                    Toast.makeText(getApplicationContext(), "Numero di telefono non valido", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Phone number not valid", Toast.LENGTH_LONG).show();
                     break;
                 }
                 else
@@ -204,9 +196,9 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                         }
                         catch(Exception e)
                         {
-                            // if an exception occours during the protocol execution, the app returns on the main activity
+                            // if an exception occurs during the protocol execution, the app returns on the main activity
                             nextActivityIntent = new Intent(this, MainActivity.class);
-                            Toast.makeText(getApplicationContext(), "Si è verificato un errore in Send!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
                         }
                         nextActivityIntent = new Intent(this, SendTextActivity.class);
                         nextActivityIntent.putExtra("nonceA", nonceA);
@@ -224,13 +216,13 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                                 switch(tmp)
                                 {
                                     case -1:
-                                        errorString = "Errore! Nessun messaggio presente.";
+                                        errorString = "Error! No SMS found.";
                                         break;
                                     case -2:
-                                        errorString = "Errore! Nessun messaggio inviato da " + telText + ".";
+                                        errorString = "Errore! No SMS from " + telText + " found.";
                                         break;
                                     case -3:
-                                        errorString = "Errore sul mittente!";
+                                        errorString = "Error on the sender!";
                                         break;
                                 }
                                 Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();
@@ -244,8 +236,8 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                         }
                         catch(Exception e)
                         {
-                            // if an exception occours during the protocol execution, the app returns on the main activity
-                            Toast.makeText(getApplicationContext(), "Si è verificato un errore!", Toast.LENGTH_LONG).show();
+                            // if an exception occurs during the protocol execution, the app returns on the main activity
+                            Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -260,7 +252,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                     telText += b.getText().toString();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Premi OK per continuare", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Click ok OK to continue", Toast.LENGTH_LONG).show();
                 break;
 
         }
@@ -289,7 +281,7 @@ public class TelephoneNumberActivity extends AppCompatActivity {
     }
 
     /*
-         Creazione fragment
+         Fragment creation
     */
     public static class TelephoneNumberFragment extends Fragment {
 
