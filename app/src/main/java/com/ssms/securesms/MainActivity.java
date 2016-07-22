@@ -99,9 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
         if (id == R.id.MENU_1) {
-            /*
-                Codice di gestione della voce MENU_1
-             */
             return true;
         }
         return super.onOptionsItemSelected(item);

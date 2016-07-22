@@ -189,18 +189,20 @@ public class SendTextActivity extends AppCompatActivity {
     }
 
     /*
-        Creazione menu
+         Creazione menu
     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.MENU_1) {
             return true;
         }
         return super.onOptionsItemSelected(item);
