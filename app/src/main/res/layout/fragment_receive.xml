@@ -33,7 +33,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="51dp"
-        android:text="@string/ok" />
+
+        android:text="@string/ok"
+        android:onClick="buttonAction" />
 
     <Button
         android:id="@+id/okButtonMsg2ReceiveTextActivity"
