@@ -2,9 +2,9 @@
     <string name="app_name">SecureSMS</string>
 
     //Main Activity
-    <string name="main_text">Press Send or Receive button to start the secure SMS communication</string>
+    <string name="main_text">Press Send or Decrypt button to start the secure SMS communication</string>
     <string name="main_send_button">Send SMS</string>
-    <string name="main_receive_button">Receive SMS</string>
+    <string name="main_receive_button">Decrypt SMS</string>
 
     //Pin Activity
     <string name="title_activity_pin">Insert pin</string>
