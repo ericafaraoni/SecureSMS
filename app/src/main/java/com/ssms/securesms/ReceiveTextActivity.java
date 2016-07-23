@@ -96,7 +96,7 @@ public class ReceiveTextActivity extends AppCompatActivity {
         Intent nextActivityIntent = null;
         switch(arg0.getId())
         {
-            // receive the last message of the protocol
+            // receive the last message of the handshake protocol
             case R.id.okButtonMsg1ReceiveTextActivity:
                 try
                 {
@@ -136,7 +136,7 @@ public class ReceiveTextActivity extends AppCompatActivity {
                 // the handshake is done
                 Toast.makeText(getApplicationContext(), "Handshake successfully concluded!", Toast.LENGTH_SHORT).show();
                 // set the text of the TextView and the visibility of the buttons
-                txtView.setText("Wait for the message and then click on OK");
+                txtView.setText("Wait for the SMS and then click on GOT IT! to read the message");
                 arg0.setVisibility(View.INVISIBLE);
                 findViewById(R.id.okButtonMsg2ReceiveTextActivity).setVisibility(View.VISIBLE);
                 break;

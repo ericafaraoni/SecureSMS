@@ -29,13 +29,14 @@
 
     //Send Text Activity
     <string name="title_activity_send_text">Send Text</string>
-    <string name="send_text_activity_textview_attendi">Wait for the SMS and then click on OK to write the text message</string>
-    <string name="scrivi_msg">Insert here the text message</string>
-    <string name="send_sms">Send!</string>
+    <string name="send_wait_message">Wait for the SMS and then click on GOT IT! to continue</string>
+    <string name="write_msg">Insert text message</string>
+    <string name="msg_received">Got it!</string>
+    <string name="send_sms">Send</string>
 
     //Receive Text Activity
     <string name="title_activity_receive_text">Receive Text</string>
-    <string name="receive_activity_textview0">Wait for the SMS and then click on the OK button</string>
-    <string name="back_to_main_activity">Back to the home</string>
+    <string name="receive_wait_message">Wait for the SMS and then click on GOT IT! to complete the handshake phase</string>
+    <string name="back">Back</string>
 
 </resources>
