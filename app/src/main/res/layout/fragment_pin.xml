@@ -23,9 +23,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
-        android:textSize="35sp"
-        android:elegantTextHeight="true"
-        android:background="@drawable/textline" />
+        android:textSize="35sp" />
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="95dp"
+        android:background="@color/colorAccent" />
 
     <Button android:id="@+id/ButtonKeypad1Activity"
         android:layout_width="70dp"
