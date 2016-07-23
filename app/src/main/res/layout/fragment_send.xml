@@ -51,6 +51,7 @@
         android:layout_alignBaseline="@+id/okButtonSendTextActivity"
         android:layout_alignBottom="@+id/okButtonSendTextActivity"
         android:layout_alignLeft="@+id/okButtonSendTextActivity"
+        android:layout_alignStart="@+id/okButtonSendTextActivity"
         android:text="@string/send_sms"
         android:backgroundTint="@color/colorButton"
         android:visibility="invisible"
