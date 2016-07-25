@@ -25,7 +25,7 @@ import javax.crypto.SecretKey;
 public class TelephoneNumberActivity extends AppCompatActivity {
 
     private String action, nonceA, nonceB, myPhone;
-    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.Action";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,27 +40,13 @@ public class TelephoneNumberActivity extends AppCompatActivity {
 
         // Retrieve the operation
         Intent intent = getIntent();
-        action = intent.getStringExtra("action");
+        action = intent.getStringExtra(EXTRA_MESSAGE);
+
         // Retrieve nonces
         if(action.equals("SEND"))
             nonceA = intent.getStringExtra("nonceA");
         else
             nonceB = intent.getStringExtra("nonceB");
-
-        // Keyboard buttons
-        Button keyboard[] = new Button[12];
-        keyboard[0] = (Button) findViewById(R.id.ButtonKeypad1Activity);
-        keyboard[1] = (Button) findViewById(R.id.ButtonKeypad2Activity);
-        keyboard[2] = (Button) findViewById(R.id.ButtonKeypad3Activity);
-        keyboard[3] = (Button) findViewById(R.id.ButtonKeypad4Activity);
-        keyboard[4] = (Button) findViewById(R.id.ButtonKeypad5Activity);
-        keyboard[5] = (Button) findViewById(R.id.ButtonKeypad6Activity);
-        keyboard[6] = (Button) findViewById(R.id.ButtonKeypad7Activity);
-        keyboard[7] = (Button) findViewById(R.id.ButtonKeypad8Activity);
-        keyboard[8] = (Button) findViewById(R.id.ButtonKeypad9Activity);
-        keyboard[9] = (Button) findViewById(R.id.ButtonKeypadBackActivity);
-        keyboard[10] = (Button) findViewById(R.id.ButtonKeypad0Activity);
-        keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkActivity);
 
     }
 
@@ -159,7 +145,6 @@ public class TelephoneNumberActivity extends AppCompatActivity {
         cipherText = ac.encrypt(plainText, aPublicKey);
 
         // send message
-        hdl = new smsHandler(this,destPhone);
         hdl.smsSend(cipherText);
         return 0;
     }
@@ -197,10 +182,11 @@ public class TelephoneNumberActivity extends AppCompatActivity {
                         catch(Exception e)
                         {
                             // if an exception occurs during the protocol execution, the app returns on the main activity
-                            nextActivityIntent = new Intent(this, MainActivity.class);
                             Toast.makeText(getApplicationContext(), "Sorry, an error occurs!", Toast.LENGTH_LONG).show();
+                            nextActivityIntent = new Intent(this, MainActivity.class);
+                            startActivity(nextActivityIntent);
                         }
-                        nextActivityIntent = new Intent(this, SendTextActivity.class);
+                        nextActivityIntent  = new Intent(this, SendTextActivity.class);
                         nextActivityIntent.putExtra("nonceA", nonceA);
                         nextActivityIntent.putExtra("destPhone", telText);
                     }

@@ -20,7 +20,6 @@ import javax.crypto.SecretKey;
 
 public class ReceiveTextActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
     private String nonceB, destPhone;
     private SecretKey sharedKey;
     private SymmetricCipher sc;
@@ -37,11 +36,6 @@ public class ReceiveTextActivity extends AppCompatActivity {
                     .add(R.id.container, new ReceiveTextFragment()).commit();
         }
 
-        // set onClick listener
-        Button[] buttons = new Button[3];
-        buttons[0] = (Button) findViewById(R.id.okButtonMsg1ReceiveTextActivity);
-        buttons[1] = (Button) findViewById(R.id.okButtonMsg2ReceiveTextActivity);
-        buttons[2] = (Button) findViewById(R.id.endButtonReceiveTextActivity);
 
         // recover my nonce, destPhone and myPhone
         Intent intent = getIntent();

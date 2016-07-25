@@ -17,7 +17,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.Action";
     private final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
     private String[] PERMISSIONS = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        Button sendSMS = (Button) findViewById(R.id.sendButton);
-        Button receiveSMS = (Button) findViewById(R.id.receiveButton);
 
         // for Android version > 6.0
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -71,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         switch(arg0.getId())
         {
             case R.id.sendButton:
-                i.putExtra("action","SEND");
+                i.putExtra(EXTRA_MESSAGE,"SEND");
                 break;
 
             case R.id.receiveButton:
-                i.putExtra("action","RECEIVE");
+                i.putExtra(EXTRA_MESSAGE,"RECEIVE");
                 break;
         }
 

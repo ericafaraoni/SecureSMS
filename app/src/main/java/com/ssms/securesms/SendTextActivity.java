@@ -23,7 +23,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SendTextActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
     private String nonceA, destPhone;
     private SecretKey sharedKey;
     private SymmetricCipher sc;
@@ -38,10 +37,6 @@ public class SendTextActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new SendTextFragment()).commit();
         }
-        // set onClick listener
-        Button[] buttons = new Button[2];
-        buttons[0] = (Button) findViewById(R.id.okButtonSendTextActivity);
-        buttons[1] = (Button) findViewById(R.id.inviaButtonSendTextActivity);
 
         // recover my nonce
         Intent intent = getIntent();
@@ -141,7 +136,7 @@ public class SendTextActivity extends AppCompatActivity {
                                 break;
 
                             case -4:
-                                errorString = " !";
+                                errorString = " Error, nonce is not correct!!";
                                 break;
                         }
                         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();

@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class PinActivity extends AppCompatActivity{
 
-    public final static String EXTRA_MESSAGE = "com.ssms.securesms.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.ssms.securesms.Action";
     private String action = "";
 
     @Override
@@ -31,22 +31,7 @@ public class PinActivity extends AppCompatActivity{
 
         // Retrieve the operation
         Intent intent = getIntent();
-        action = intent.getStringExtra("action");
-
-        // Keyboard buttons
-        Button keyboard[] = new Button[12];
-        keyboard[0] = (Button) findViewById(R.id.ButtonKeypad1Activity);
-        keyboard[1] = (Button) findViewById(R.id.ButtonKeypad2Activity);
-        keyboard[2] = (Button) findViewById(R.id.ButtonKeypad3Activity);
-        keyboard[3] = (Button) findViewById(R.id.ButtonKeypad4Activity);
-        keyboard[4] = (Button) findViewById(R.id.ButtonKeypad5Activity);
-        keyboard[5] = (Button) findViewById(R.id.ButtonKeypad6Activity);
-        keyboard[6] = (Button) findViewById(R.id.ButtonKeypad7Activity);
-        keyboard[7] = (Button) findViewById(R.id.ButtonKeypad8Activity);
-        keyboard[8] = (Button) findViewById(R.id.ButtonKeypad9Activity);
-        keyboard[9] = (Button) findViewById(R.id.ButtonKeypadBackActivity);
-        keyboard[10] = (Button) findViewById(R.id.ButtonKeypad0Activity);
-        keyboard[11] = (Button) findViewById(R.id.ButtonKeypadOkActivity);
+        action = intent.getStringExtra(EXTRA_MESSAGE);
 
     }
 
@@ -77,12 +62,12 @@ public class PinActivity extends AppCompatActivity{
                 {
                     if(action.equals("SEND"))
                     {
-                        nextActivityIntent.putExtra("action","SEND");
+                        nextActivityIntent.putExtra(EXTRA_MESSAGE,"SEND");
                         nextActivityIntent.putExtra("nonceA",pinText);
                     }
                     else
                     {
-                        nextActivityIntent.putExtra("action","RECEIVE");
+                        nextActivityIntent.putExtra(EXTRA_MESSAGE,"RECEIVE");
                         nextActivityIntent.putExtra("nonceB",pinText);
                     }
                 }
