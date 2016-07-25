@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import javax.crypto.spec.SecretKeySpec;
 public class SendTextActivity extends AppCompatActivity {
 
     private String nonceA, destPhone;
-    private SecretKey sharedKey;
     private SymmetricCipher sc;
     private final byte[] IV = { 0x0a, 0x01, 0x02, 0x03, 0x04, 0x0b, 0x0c, 0x0d, 0x0a, 0x01, 0x02, 0x03, 0x04, 0x0b, 0x0c, 0x0d };
 
@@ -49,6 +47,7 @@ public class SendTextActivity extends AppCompatActivity {
     {
         AsymmetricCipher ac = new AsymmetricCipher("RSA/ECB/PKCS1Padding");
         KeyStorage myAsymStorage;
+        SecretKey sharedKey;
         PrivateKey myKey;
         String cipherText;
         smsHandler hdl = new smsHandler(this, destPhone);
@@ -109,7 +108,7 @@ public class SendTextActivity extends AppCompatActivity {
     {
         TextView txtView = (TextView) findViewById(R.id.textViewSendTextActivity);
         EditText edit = (EditText) findViewById(R.id.editTextSendTextActivity);
-        Intent nextActivityIntent = null;
+        Intent nextActivityIntent;
 
         switch(arg0.getId())
         {
@@ -197,10 +196,7 @@ public class SendTextActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.MENU_1) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.MENU_1 || super.onOptionsItemSelected(item);
     }
 
     /*
@@ -214,9 +210,8 @@ public class SendTextActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_send,
+            return inflater.inflate(R.layout.fragment_send,
                     container, false);
-            return rootView;
         }
     }
 

@@ -39,11 +39,6 @@ public class KeyStorage {
     }
 
     // **asymmetric**
-    public KeyPair loadKeyPair()
-    {
-        return new KeyPair(this.loadPublicKey(),this.loadPrivateKey());
-    }
-
     public PrivateKey loadPrivateKey()
     {
         PrivateKey privateKeyR = null;

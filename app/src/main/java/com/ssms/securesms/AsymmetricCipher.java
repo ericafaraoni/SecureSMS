@@ -16,7 +16,7 @@ class AsymmetricCipher
 
     public String encrypt(String plainText, Key key) throws Exception
     {
-        String cipherText = "";
+        String cipherText;
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] cipherTextBytes = cipher.doFinal(plainText.getBytes());
         cipherText = Base64.encodeToString(cipherTextBytes, Base64.DEFAULT);
